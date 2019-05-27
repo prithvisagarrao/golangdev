@@ -1,0 +1,79 @@
+Install and uninstall applications
+ - rule id 140126
+ - rule file name - exe-installation.xml
+ - ossec.conf: 
+	<localfile>
+	      <log_format>full_command</log_format>
+       	      <command>dir C:\users\*.exe /s /b | find ^"temp^" /v /i | findstr /e .exe</command>
+  	</localfile>
+
+Monitor addition of a user to a group policy
+ - event id 4728
+
+User created and deleted within 48 hrs on AD
+ - rule id 120012
+ - decoder name:users-deleted-48hrs.xml
+ - rule name:users-deleted-48hrs-rule.xml
+ - script name: user-credel-48hrs-insert.py, user-credel-48hrs-select.py
+
+Brute Force Login with same ID
+ - script: all-login-failures-4768-insert.py, users-brute-force-select.py
+ - rule id 152000
+ - rule name: brute-force-rule.xml
+ - decoder name: brute-force.xml
+
+Internal machines to external network on Port 445
+ - port445rules.xml
+ - script name: win445lastlogin.py
+ - list: list-IP
+
+Administrative Accounts Login failure
+ - script: admin-login-fail-select.py
+ - rule id 152001
+ - decoder name:admin-login-fail.xml
+ - rule name: admin-login-fail-rule.xml
+
+Administrator Multiple Login Failure detected
+ - script: admin-login-multifail-select.py
+ - decoder name: admin-multilogin-fail.xml
+ - rule name: admin-multi-login-fail-rule.xml
+ - rule id 152002
+
+Audit Log cleared
+ - event id 1102
+
+Audit Policy change
+ - event id 4719
+ - wazuh manager needs to be upgraded
+
+Change in Administrator account detected
+ - script: admin-acc-change-insert-postgres.py, admin-acc-change-get-result-postgres.py
+ - rule id 120011
+ - rule name:admin-acc-change.xml
+ - decoder name:admin-acc-change.xml
+
+Detection of user account added/removed in admin group
+ - event id 4732
+
+High number of users created/ removed within a short period of time
+ - rule id: 200052, 200050
+ - rule name multiple-deletion.xml
+
+Removable media detected
+ - rule id 140125
+ - rule name usb-win.xml
+ - ossec.conf: 
+	<localfile>
+	      <log_format>full_command</log_format>
+	      <command>reg QUERY HKLM\SYSTEM\CurrentControlSet\Enum\USB</command>
+	</localfile>
+
+User Added/Deleted to Firewall Database
+ - to be confirmed
+ - rule id 4342
+ - id: 502101
+
+Windows Security Log is full
+ - event id 1104
+
+
