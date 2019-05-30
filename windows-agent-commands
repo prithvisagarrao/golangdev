@@ -1,0 +1,9 @@
+<localfile>
+      <log_format>full_command</log_format>
+      <command>reg QUERY HKLM\SYSTEM\CurrentControlSet\Enum\USB</command>
+  </localfile>
+
+  <localfile>
+      <log_format>full_command</log_format>
+      <command>dir C:\users\*.exe /s /b | find ^"temp^" /v /i | findstr /e .exe</command>
+  </localfile>
